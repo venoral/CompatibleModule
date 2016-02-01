@@ -48,3 +48,9 @@ function getTargetObject(e){
     }
   }
 }
+
+//判断某元素是否有某类,构造函数的正则用到双重转义
+function haveClass(ele,cls){
+  var reclass=new RegExp("\\b"+cls+"\\b");
+  return reclass.test(ele.className);
+}
