@@ -100,3 +100,9 @@ var Event={
      }
     }
 }
+
+//得到介于min和max之间的随机整数
+function randomNum(min,max){
+  var num=max-min+1;
+  return Math.floor(Math.random()*num+min);
+}
