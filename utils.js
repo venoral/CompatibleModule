@@ -106,3 +106,22 @@ function randomNum(min,max){
   var num=max-min+1;
   return Math.floor(Math.random()*num+min);
 }
+
+/*过滤掉数组中重复项，返回新数组
+利用数组的indexOf方法总是返回第一个与参数匹配的元素索引。
+参数arr：要被处理的数组
+参数repArr：重复的项的数组，初始为空
+*/
+function filterRepeatArray(arr,repArr){
+   var newArr=[];
+   for(var i=0;i<arr.length;i++){
+      if(arr.indexOf(arr[i])==i){
+        newArr.push(arr[i]);
+      }else{
+        if(repArr.indexOf(arr[i])<0){
+           repArr.push(arr[i]);
+        }
+      }
+   }
+   return newArr;
+}
