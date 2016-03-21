@@ -152,6 +152,7 @@ function transToArr(collections,start,end){
           }
         }
       }catch(ex){
+        //<=IE8的某些COM对象
           var arr=new Array();
           for(var i=0;i<collections.length;i++){
             arr.push(collections[i]);
