@@ -125,3 +125,28 @@ function filterRepeatArray(arr,repArr){
    }
    return newArr;
 }
+
+/*将某个类数组集合转换为数组类型，返回新的数组类型集合，通过传入后两项参数可实现获取类型为数组的集合部分内容。
+collections：类数组集合，只传入一个参数默认返回原集合的所有项
+start：起始下标，可省略
+end：结束下标，返回该下标之前的项。可省略
+*/
+function transToArr(collections,start,end){
+   var length=arguments.length;
+   if(length==0){
+       return;
+   }else if(length==1){
+       return Array.prototype.slice.call(collections);
+   }else{
+   //判断start，end类型
+   if(typeof arguments[1]=='number'){
+       if(typeof arguments[2]=='number'){
+           return Array.prototype.slice.call(collections,start,end);
+       }else{
+          //end参数不是number类型时，slice返回length之前的项
+          end=collections.length;
+          return Array.prototype.slice.call(collections,start,end);
+       }
+    }
+  }
+}
