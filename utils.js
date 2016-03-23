@@ -161,3 +161,19 @@ function transToArr(collections,start,end){
       return arr;
    }
 }
+
+//不用把字符串转为数组实现从一个字符串中选出出现次数最多的字符及次数
+function maxCountValue(str){
+  var arr=[],max=0,parrent,chr;
+  for(var i=0;i<str.length;i++){
+  if(arr.indexOf(str[i])<0){
+     parrent=new RegExp(str[i],'g');
+     if(str.match(parrent).length>max){
+       max= str.match(parrent).length;
+       chr=str[i];
+     }
+     arr.push(str[i]);
+  }
+ }
+ console.log(chr,max)
+}
