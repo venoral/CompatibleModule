@@ -177,3 +177,22 @@ function maxCountValue(str){
  }
  console.log(chr,max)
 }
+
+//获取页面可见视口宽高，向后兼容
+function visualViewport(){
+  var visualobj={};
+  visualobj.pageWidth=window.innerWidth,
+  visualobj.pageHeight=window.innerHeight;
+  //<=IE8不支持上面两种属性
+  if(typeof visualobj.pageWidth!="number"){
+        if(document.compatMode=="CSS1Compat"){
+            visualobj.pageWidth=window.documentElement.clientWidth;
+            visualobj.pageHeight=window.documentElement.clientHeight;
+        }else{
+            //兼容三大主流浏览器的混杂模式
+            visualobj.pageWidth=window.body.clientWidth;
+            visualobj.pageHeight=window.body.clinetHeight;
+        }
+    }
+     return visualobj;
+}
