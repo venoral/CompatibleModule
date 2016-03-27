@@ -210,3 +210,21 @@ Object.prototype.deepClone=function(){
   },this);
   return newobj;
 }
+
+/*从给定URL中找出指定的键对应的值*/
+function QuerySearch(url,name){
+  var arr=url.split('?')[1].split('&'),
+      str=name+'=',index,start;
+  for(var i=0;i<arr.length;){
+    index=arr[i].indexOf(str);
+    if(index<0){
+      //如果str不在该项中，进入下一项
+      i++;
+    }else{
+      start=index+str.length;
+      return arr[i].slice(start);
+    }
+  }
+  //如果都循环完还没找到则返回""
+  return "";
+}
