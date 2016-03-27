@@ -196,3 +196,17 @@ function visualViewport(){
     }
      return visualobj;
 }
+
+/*实现深度克隆，原型指向，自身属性，以及自身属性的特性值
+给Object扩展一个clone方法，返回克隆后的新对象
+注意给forEach中要执行的函数传上下文参数this，否则默认为undefined（严格模式下）或全局对象window
+*/
+Object.prototype.deepClone=function(){
+  var newobj=Object.create(Object.getPrototypeOf(this));
+  var propNames=Object.getOwnPropertyNames(this);
+  propNames.forEach(function(item){
+    var des=Object.getOwnPropertyDescriptor(this,item);
+    Object.defineProperty(newobj,item,des);
+  },this);
+  return newobj;
+}
