@@ -228,3 +228,19 @@ function QuerySearch(url,name){
   //如果都循环完还没找到则返回""
   return "";
 }
+
+/*给定m~n的水仙花数*/
+function shuixianhua(m,n){
+   var num,sum,sxarr=[];
+   for(var i=m;i<=n;i++){
+      var arr=i.toString().split('');
+      //每次在这里初始化为0
+      sum=0;
+      for(var j=0;j<arr.length;j++){
+        num=Math.pow(parseInt(arr[j]),3);
+        sum+=num;
+        if(sum==i) sxarr.push(i);
+      }
+   }
+   return sxarr;
+}
