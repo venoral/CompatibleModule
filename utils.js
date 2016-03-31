@@ -244,3 +244,13 @@ function shuixianhua(m,n){
    }
    return sxarr;
 }
+
+/*随机返回16进制颜色,因为用到arguments.callee所以严格模式下会出错。
+实现：每次都要判断一下长度作为限制条件，递归实现类似这样 '4'&&'43'&&'43a'... 最后取值为最最右边的字符串
+*/
+function getRandomColor(){
+  var color=function(c){
+    return (c+='0123456789abcdef'[Math.floor(Math.random()*16)])&&c.length==6?c:arguments.callee(c);
+  }('');
+  return '#'+color;
+}
