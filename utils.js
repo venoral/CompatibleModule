@@ -254,3 +254,24 @@ function getRandomColor(){
   }('');
   return '#'+color;
 }
+
+//判断一个数组能都分成两个数组数组，要求这两个数组的每组总值相同
+function splitarr(arr){
+      var sum = 0,aver=0,s=0;
+      arr.forEach(function(item,i){
+         sum+=item;
+       });
+      aver = sum/2;
+      //单值
+      if(arr.indexOf(aver)>=0){
+            return true;
+      }
+      for(var i =0;i<arr.length;i++){
+         //多值
+           s+=arr[i];
+           if(s == aver){
+            return true;
+           }
+      }
+      return false;
+}
