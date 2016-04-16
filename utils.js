@@ -275,3 +275,61 @@ function splitarr(arr){
       }
       return false;
 }
+
+//反转链表
+
+//给你n个数找出一个连续的数列，使数列的和最大
+
+//n个数，找出出现次数最多那个数
+function maxTime(arr){
+  //arr先排序,快排
+  arr = quickSort(arr, 0, arr.length-1);
+  var max=0,start,end;
+  for(var i=0; i<arr.length;){
+    start = arr.indexOf(arr[i]);
+    end = arr.lastIndexOf(arr[i]);
+    if(end - start +1 >= max){
+      max = end-start+1;
+      num = arr[i];
+    }
+    i+= end -start +1;
+  }
+  return num;
+}
+//快排
+function quickSort(arr, left, right){
+  if(left >= right){
+    return ;
+  }
+
+    var i = left,
+        j = right,
+        jz = arr[left],t;
+    while(i!=j){
+      while(i<j&&arr[j]>=jz){ j--;}
+      while(i<j&&arr[i]<=jz){ i++;}
+      //交换
+      t = arr[j];
+      arr[j] = arr[i];
+      arr[i] = t;
+    }
+    //i =j
+    arr[left] = arr[i];
+    arr[i] = jz;
+    //递归
+    quickSort(arr, left, i-1);
+    quickSort(arr, i+1, right);
+
+    return arr;
+
+}
+
+//将一个字符串转化为数字
+function transNum(str){
+  var str0 = '0',
+      start = str0.charCodeAt(), arr = [];
+  Array.prototype.forEach.call(str, function(item, idx){
+    arr.push(item.charCodeAt() - start);
+  });
+  return Number(arr.join(''));
+}
