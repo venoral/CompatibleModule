@@ -333,3 +333,26 @@ function transNum(str){
   });
   return Number(arr.join(''));
 }
+
+/*
+判断某节点是否是另外一个节点的后代的兼容性代码
+refNode：参照节点
+targetNode：要检查的节点
+*/
+function contains(refNode, targetNode){
+  if(typeof refNode.contains == 'function'){
+    return refNode.contains(targetNode);
+  }else if(typeof refNode.compareDocumentPosition == 'function'){
+    return !!(refNode.compareDocumentPosition(targetNode)&16);
+  }else{
+    var node = targetNode.parentNode;
+    do{
+      if(node == refNode){
+        return true;
+      }else{
+        node = node.parentNode;
+      }
+    }while(node!== null);
+    return false;
+  }
+}
