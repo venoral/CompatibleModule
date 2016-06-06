@@ -38,7 +38,7 @@ var EventUtil = {
      return event.target || event.srcElement;
   },
   /**
-   * @param  {[obj]} 事件对象
+   * @param  {[obj]} [事件对象]
    */
   preventDefault : function (event) {
      if( event.preventDefault ){
