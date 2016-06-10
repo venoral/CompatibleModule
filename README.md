@@ -1,2 +1,3 @@
 #  CompatibleModule
 > * Events
+> * Cookie
