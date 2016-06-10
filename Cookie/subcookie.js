@@ -56,6 +56,10 @@ var SubCookieUtil = {
     subcookies[subName] = value;
     this.setAll(name, subcookies, expires, path, domain, secure);
   },
+  /**
+   * [setAll description]
+   * @param {[object]} subcookies [包含所有子cookie对象]
+   */
   setAll : function (name, subcookies, expires, path, domain, secure){
     /*
     只适用于在浏览器通过document.cookie设置的name,
@@ -90,5 +94,21 @@ var SubCookieUtil = {
     }
 
     document.cookie = cookieText;
+  },
+  /**
+   * [删除某个子cookie]
+   */
+  unset : function (name, subName, path, domain, secure){
+    var subcookies = this.getAll(name);
+    if(subcookies){
+      delete subcookies[subName];
+      this.setAll(name, subcookies, path, domain, secure);
+    }
+  },
+  /**
+   * [删除父cookie]
+   */
+  unsetAll : function (name, path, domain, secure){
+    this.setAll(name, null, new Date(0), path, domain, secure);
   }
 }
