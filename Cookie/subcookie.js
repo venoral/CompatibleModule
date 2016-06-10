@@ -1,5 +1,3 @@
-require('./cookies.js');
-
 var SubCookieUtil = {
   /**
    * [get description]
@@ -43,20 +41,26 @@ var SubCookieUtil = {
     }
     return null;
   },
-
+  /**
+   * [set description]
+   * @param {[string]} name  [父cookie名称]
+   * @param {[string]} subName [子cookie名称]
+   * @param {[string]} value [子cookie值]
+   * @param {[date]} expires [失效时间]
+   * @param {[string]} path  [指定域中路径]
+   * @param {[string]} domain  [指定域]
+   * @param {[boolean]} secure [安全标志]
+   */
   set : function (name, subName, value, expires, path, domain, secure){
     var subcookies = this.getAll(name) || {};
     subcookies[subName] = value;
     this.setAll(name, subcookies, expires, path, domain, secure);
   },
-
   setAll : function (name, subcookies, expires, path, domain, secure){
-    /*先清除之前已存在的name cookie,
+    /*
     只适用于在浏览器通过document.cookie设置的name,
     而不能清除服务端返回的document.cookie，可能是因为服务端做了限制
     */
-    CookieUtil.unset(name);
-
     var cookieText = encodeURIComponent(name) + '=',
         subcookiePart = new Array(), subName;
 
