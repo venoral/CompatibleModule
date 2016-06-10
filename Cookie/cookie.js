@@ -1,4 +1,4 @@
-var cookieUtil = {
+var CookieUtil = {
   /**
    * [get description]
    * @param  {[string]} name [cookie名称]
@@ -53,3 +53,5 @@ var cookieUtil = {
     this.set(name, '', new Date(0), path, domain, secure)
   }
 }
+
+module.export = CookieUtil;

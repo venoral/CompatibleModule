@@ -1,3 +1,5 @@
+require('./cookies.js');
+
 var SubCookieUtil = {
   /**
    * [get description]
@@ -40,5 +42,49 @@ var SubCookieUtil = {
       }
     }
     return null;
+  },
+
+  set : function (name, subName, value, expires, path, domain, secure){
+    var subcookies = this.getAll(name) || {};
+    subcookies[subName] = value;
+    this.setAll(name, subcookies, expires, path, domain, secure);
+  },
+
+  setAll : function (name, subcookies, expires, path, domain, secure){
+    /*先清除之前已存在的name cookie,
+    只适用于在浏览器通过document.cookie设置的name,
+    而不能清除服务端返回的document.cookie，可能是因为服务端做了限制
+    */
+    CookieUtil.unset(name);
+
+    var cookieText = encodeURIComponent(name) + '=',
+        subcookiePart = new Array(), subName;
+
+    for(subName in subcookies){
+      if(subName.length>0 && subcookies.hasOwnProperty(subName)){
+        subcookiePart.push(encodeURIComponent(subName) + '=' + encodeURIComponent(subcookies[subName]));
+      }
+    }
+
+    if(subcookiePart.length > 0){
+
+      cookieText += subcookiePart.join('&');
+      if(expires instanceof Date){
+        cookieText += '; expires=' + expires.toGMTString();
+      }
+      if(path){
+        cookieText += '; path=' + path;
+      }
+      if(domain){
+        cookieText += '; domain=' + domain;
+      }
+      if(secure){
+        cookieText += '; secure';
+      }
+    }else{
+      cookieText += '; expires=' + (new Date(0)).toGMTString();
+    }
+
+    document.cookie = cookieText;
   }
 }
