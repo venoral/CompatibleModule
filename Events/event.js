@@ -53,6 +53,17 @@ var EventUtil = {
      }else{
         event.cancelBubble = true;
      }
+  },
+  getRelatedTarget : function (event){
+     if(event.relatedTarget){
+        return event.relatedTarget;
+     }else if(event.toElemet){
+        return event.toElemet;
+     }else if(event.fromElement){
+        return event.fromElement;
+     }else{
+        return null;
+     }
   }
-  
+
 };
